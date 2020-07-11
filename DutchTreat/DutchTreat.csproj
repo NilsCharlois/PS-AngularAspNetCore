@@ -12,7 +12,7 @@
   </ItemGroup>
 
 <ItemGroup>
-<None Include="node_modules/**"/>
+<None Include="node_modules/**" />
 </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +21,6 @@
 
 <ProjectExtensions><VisualStudio><UserProperties NpmRestoreOnPackageJsonSave="True" NpmRestoreOnProjectOpen="True" /></VisualStudio></ProjectExtensions>
 <Target Name="MyPreCompileTarget" BeforeTargets="Build">
-        <Exec Command="npm install"/>
+        <Exec Command="npm install" />
     </Target>
 </Project>
