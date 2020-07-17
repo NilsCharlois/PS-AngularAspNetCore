@@ -19,6 +19,10 @@
     <PackageReference Include="OdeToCode.UseNodeModules" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
+  </ItemGroup>
+  
 <ProjectExtensions><VisualStudio><UserProperties NpmRestoreOnPackageJsonSave="True" NpmRestoreOnProjectOpen="True" /></VisualStudio></ProjectExtensions>
 <Target Name="MyPreCompileTarget" BeforeTargets="Build">
         <Exec Command="npm install" />
