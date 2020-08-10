@@ -9,6 +9,8 @@ using DutchTreat.Services;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using AutoMapper;
+using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using System.Reflection;
 
 namespace DutchTreat
@@ -24,6 +26,11 @@ namespace DutchTreat
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<StoreUser, IdentityRole>(cfg=>{
+                cfg.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<DutchContext>();
+
             services.AddDbContext<DutchTreat.Data.DutchContext>(cfg=>{
                 cfg.UseSqlServer(_config.GetConnectionString("DutchConnectionString"));
             });
@@ -52,6 +59,9 @@ namespace DutchTreat
      
             app.UseStaticFiles();
             app.UseNodeModules();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
             
             app.UseRouting();
 
