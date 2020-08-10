@@ -2,6 +2,7 @@ using System;
 using DutchTreat.ViewModels;
 using DutchTreat.Services; 
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace DutchTreat.Controllers
 {
@@ -9,10 +10,12 @@ namespace DutchTreat.Controllers
 	public class AppController : Controller
 	{
 		private readonly IMailService _mailService;
+		private readonly DutchTreat.Data.IDutchRepository _repo;
 
-		public AppController(IMailService mailService)
+		public AppController(IMailService mailService, DutchTreat.Data.IDutchRepository repo)
 		{
 			_mailService = mailService;
+			_repo = repo;
 		}
 
 		public IActionResult Index()
@@ -25,9 +28,6 @@ namespace DutchTreat.Controllers
 		public IActionResult Contact()
 		{
 			ViewBag.Title = "Contact Us";
-
-			//throw new InvalidOperationException("Oh Jesus");
-
 			return View();
 		}
 
@@ -57,6 +57,15 @@ namespace DutchTreat.Controllers
 		{
 			ViewBag.Title = "About Us";
 			return View();
+		}
+
+		[HttpGet("shop")]
+		public IActionResult Shop()
+		{
+			
+			var results = _repo.GetAllProducts();
+
+			return View(results.ToList());
 		}
 	}
 

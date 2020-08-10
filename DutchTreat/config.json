@@ -1,0 +1,11 @@
+{
+    "ConnectionStrings":{
+        "DutchConnectionString":"server=.;Database=DutchDb;Integrated Security=false;MultipleActiveResultSets=true;User Id=sa;Password=RnD4ever;"
+    },
+    "Logging":{
+        "LogLevel":{
+            "Default":"Information",
+            "Microsoft": "Warning"
+        }
+    }
+}
